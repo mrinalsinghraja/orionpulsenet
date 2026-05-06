@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OrionPulseNet — Privacy Policy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a14;
+    --surface: #12121f;
+    --surface2: #1a1a2e;
+    --border: rgba(120,100,255,0.15);
+    --accent: #7c6ff7;
+    --accent2: #00d4aa;
+    --text: #e8e6f0;
+    --muted: #7a7890;
+    --muted2: #9997b0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent2); }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    position: sticky; top: 0;
+    background: rgba(10,10,20,0.92);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+  }
+  .header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, #7c6ff7, #00d4aa);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .logo-name { font-size: 15px; font-weight: 600; letter-spacing: -0.3px; color: var(--text); }
+  .logo-tag { font-size: 11px; color: var(--accent2); font-weight: 500; letter-spacing: 0.5px; }
+  nav { display: flex; gap: 24px; }
+  nav a { font-size: 13px; color: var(--muted); font-weight: 500; transition: color 0.2s; }
+  nav a:hover { color: var(--text); }
+
+  .hero {
+    max-width: 860px; margin: 0 auto;
+    padding: 56px 2rem 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(124,111,247,0.1);
+    border: 1px solid rgba(124,111,247,0.2);
+    color: #b0a8ff; font-size: 12px; font-weight: 500;
+    padding: 4px 12px; border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .hero h1 { font-size: 30px; font-weight: 600; letter-spacing: -0.5px; margin-bottom: 10px; }
+  .hero-meta { font-size: 13px; color: var(--muted); display: flex; gap: 20px; flex-wrap: wrap; }
+  .hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* TOC */
+  .layout {
+    max-width: 860px; margin: 0 auto;
+    padding: 40px 2rem 80px;
+    display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start;
+  }
+  .toc {
+    position: sticky; top: 80px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 16px;
+  }
+  .toc-title { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+  .toc a {
+    display: block; font-size: 12px; color: var(--muted2);
+    padding: 5px 0; border-left: 2px solid transparent;
+    padding-left: 10px; transition: all 0.15s; text-decoration: none;
+  }
+  .toc a:hover { color: var(--text); border-left-color: var(--accent); }
+
+  /* CONTENT */
+  .content { min-width: 0; }
+
+  .policy-section { margin-bottom: 48px; }
+  .policy-section h2 {
+    font-size: 18px; font-weight: 600; letter-spacing: -0.3px;
+    margin-bottom: 16px; padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-num {
+    width: 26px; height: 26px; border-radius: 6px;
+    background: rgba(124,111,247,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600; color: var(--accent);
+    flex-shrink: 0;
+  }
+  .policy-section p { font-size: 14px; color: var(--muted2); margin-bottom: 12px; line-height: 1.8; }
+  .policy-section p:last-child { margin-bottom: 0; }
+  .policy-section ul { padding-left: 0; margin: 10px 0; list-style: none; }
+  .policy-section li {
+    font-size: 14px; color: var(--muted2); padding: 5px 0 5px 20px;
+    position: relative; line-height: 1.7;
+  }
+  .policy-section li::before {
+    content: ''; position: absolute; left: 0; top: 13px;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent2); opacity: 0.6;
+  }
+  .policy-section li strong { color: var(--text); font-weight: 500; }
+
+  .highlight-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px 22px;
+    margin: 16px 0;
+  }
+  .highlight-box.green {
+    background: rgba(0,212,170,0.06);
+    border-color: rgba(0,212,170,0.2);
+  }
+  .highlight-box.purple {
+    background: rgba(124,111,247,0.06);
+    border-color: rgba(124,111,247,0.2);
+  }
+  .highlight-box p { margin: 0; font-size: 13px; }
+  .highlight-box.green p { color: #7ae8d0; }
+  .highlight-box.purple p { color: #c0baff; }
+
+  .zero-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0;
+  }
+  .zero-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 16px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--muted2);
+  }
+  .zero-icon {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(0,212,170,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--accent2); flex-shrink: 0;
+  }
+
+  .contact-row {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px 22px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap; margin-top: 16px;
+  }
+  .contact-row p { margin: 0; font-size: 13px; color: var(--muted2); }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--accent); color: white;
+    padding: 9px 18px; border-radius: 8px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+    transition: opacity 0.2s; text-decoration: none;
+  }
+  .contact-link:hover { opacity: 0.85; color: white; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    text-align: center; padding: 28px 2rem;
+    font-size: 12px; color: var(--muted);
+  }
+  .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 8px; }
+  .footer-links a { color: var(--muted2); text-decoration: none; }
+  .footer-links a:hover { color: var(--text); }
+
+  @media (max-width: 640px) {
+    .layout { grid-template-columns: 1fr; }
+    .toc { display: none; }
+    .zero-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="index.html">
+      <div class="logo-icon">&#x1F4E1;</div>
+      <div>
+        <div class="logo-name">OrionPulseNet</div>
+        <div class="logo-tag">AI Network Intelligence</div>
+      </div>
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="support.html">Support</a>
+      <a href="mailto:mrinalsinghraja@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-badge">&#x1F512; Legal</div>
+  <h1>Privacy Policy</h1>
+  <div class="hero-meta">
+    <span>&#x1F4C5; Effective: May 2026</span>
+    <span>&#x1F464; Developer: Mrinal Singh Raja</span>
+    <span>&#x1F4E7; mrinalsinghraja@gmail.com</span>
+  </div>
+</div>
+
+<div class="layout">
+
+  <aside class="toc">
+    <div class="toc-title">Contents</div>
+    <a href="#summary">Summary</a>
+    <a href="#no-collect">Data we don't collect</a>
+    <a href="#location">Location services</a>
+    <a href="#monitoring">Network monitoring</a>
+    <a href="#ai">On-device AI</a>
+    <a href="#groq">Optional Groq API</a>
+    <a href="#storage">Data storage</a>
+    <a href="#third-party">Third-party services</a>
+    <a href="#children">Children's privacy</a>
+    <a href="#changes">Policy changes</a>
+    <a href="#contact">Contact</a>
+  </aside>
+
+  <div class="content">
+
+    <div class="policy-section" id="summary">
+      <h2><span class="section-num">1</span> Summary</h2>
+      <div class="highlight-box green">
+        <p>&#x2705; &nbsp;OrionPulseNet does not collect, transmit, or share any personal data. All network analysis runs entirely on your device. This policy explains exactly what the app does and does not do with your information.</p>
+      </div>
+      <p>We built OrionPulseNet on a simple principle: your network data belongs to you. The app measures, analyses, and displays your network metrics locally — nothing is sent to us or any third party by default.</p>
+    </div>
+
+    <div class="policy-section" id="no-collect">
+      <h2><span class="section-num">2</span> Data we do not collect</h2>
+      <p>OrionPulseNet does not collect any of the following:</p>
+      <div class="zero-grid">
+        <div class="zero-item"><div class="zero-icon">&#x2715;</div>Personal information of any kind</div>
+        <div class="zero-item"><div class="zero-icon">&#x2715;</div>Network traffic content or payloads</div>
+        <div class="zero-item"><div class="zero-icon">&#x2715;</div>IP addresses or MAC addresses</div>
+        <div class="zero-item"><div class="zero-icon">&#x2715;</div>Device identifiers or fingerprints</div>
+        <div class="zero-item"><div class="zero-icon">&#x2715;</div>Usage analytics or crash reports</div>
+        <div class="zero-item"><div class="zero-icon">&#x2715;</div>Location data (beyond SSID — see below)</div>
+        <div class="zero-item"><div class="zero-icon">&#x2715;</div>Contacts, calendar, or files</div>
+        <div class="zero-item"><div class="zero-icon">&#x2715;</div>Browsing history or app usage</div>
+      </div>
+    </div>
+
+    <div class="policy-section" id="location">
+      <h2><span class="section-num">3</span> Location services</h2>
+      <p>OrionPulseNet requests Location permission for one purpose only: to read your Wi-Fi network name (SSID) via the system wireless interface API. This is a platform requirement — the operating system classifies SSIDs as location-sensitive data.</p>
+      <ul>
+        <li>Your <strong>physical location is never recorded, stored, or transmitted</strong></li>
+        <li>Location data is never used for any purpose other than reading the SSID</li>
+        <li>The app functions fully without this permission — only the SSID display in the Device tab is affected</li>
+        <li>You can revoke this permission at any time via System Settings &rarr; Privacy &amp; Security &rarr; Location Services</li>
+      </ul>
+      <div class="highlight-box purple">
+        <p>&#x1F4CD; &nbsp;We do not know where you are. We do not want to know. Location permission exists solely because the operating system requires it to read a Wi-Fi network name.</p>
+      </div>
+    </div>
+
+    <div class="policy-section" id="monitoring">
+      <h2><span class="section-num">4</span> Network monitoring</h2>
+      <p>All network monitoring is performed locally using system APIs on your device. No network traffic content is ever inspected, logged, or transmitted.</p>
+      <ul>
+        <li><strong>Bandwidth measurements</strong> are derived from interface byte counter deltas — not packet inspection</li>
+        <li><strong>Latency measurements</strong> use TCP timing probes to a public IP address (1.1.1.1) — no user data is transmitted</li>
+        <li><strong>DNS timing</strong> is measured by resolving publicly known domain names locally — results are displayed only on your device</li>
+        <li><strong>CPU and memory</strong> are read via kernel statistics APIs — no process data is recorded or transmitted</li>
+      </ul>
+    </div>
+
+    <div class="policy-section" id="ai">
+      <h2><span class="section-num">5</span> On-device AI</h2>
+      <p>OrionPulseNet uses an on-device AI model as its primary analysis engine. All AI processing occurs entirely on your device.</p>
+      <ul>
+        <li>No prompts, network metrics, or AI responses are transmitted to any external server</li>
+        <li>AI insights, deep analysis, and copilot responses are generated and stored locally only</li>
+        <li>If the on-device model is unavailable, the app falls back to a deterministic rule-based engine — also entirely local</li>
+      </ul>
+      <div class="highlight-box green">
+        <p>&#x1F9E0; &nbsp;Your conversations with the AI Copilot never leave your device. By default, OrionPulseNet has no connection to any AI cloud service.</p>
+      </div>
+    </div>
+
+    <div class="policy-section" id="groq">
+      <h2><span class="section-num">6</span> Optional Groq API (cloud AI)</h2>
+      <p>OrionPulseNet offers an optional integration with the Groq API for cloud-powered AI analysis. This feature is:</p>
+      <ul>
+        <li><strong>Disabled by default</strong> — it is never active unless you explicitly enable it</li>
+        <li><strong>User-configured</strong> — you must manually enter your own Groq API key in the AI Insights tab settings</li>
+        <li><strong>Throttled</strong> — a 30-second cooldown is applied between cloud analysis requests</li>
+        <li><strong>Transparent about what is sent</strong> — only network metric summaries (speeds, latency values, scores) are sent to Groq's API. No personal data, no IP addresses, no identity information is included</li>
+        <li><strong>Locally stored key</strong> — your API key is stored in local app preferences only and is never transmitted to us</li>
+      </ul>
+      <p>If you enable this feature, Groq's privacy policy applies to any data processed by their service.</p>
+    </div>
+
+    <div class="policy-section" id="storage">
+      <h2><span class="section-num">7</span> Data storage</h2>
+      <p>OrionPulseNet stores the following data locally on your device only — nothing is backed up to any cloud service by this app:</p>
+      <ul>
+        <li><strong>Network history</strong> — JSON file retained for up to 7 days, stored in the app's Application Support folder</li>
+        <li><strong>Recent bandwidth readings and latency samples</strong> — held in memory only, cleared when the app closes</li>
+        <li><strong>Anomaly log</strong> — last 100 anomalies held in memory only</li>
+        <li><strong>Optional Groq API key</strong> — stored in local app preferences if you choose to configure it</li>
+      </ul>
+    </div>
+
+    <div class="policy-section" id="third-party">
+      <h2><span class="section-num">8</span> Third-party services</h2>
+      <p>OrionPulseNet contacts one external service during normal operation:</p>
+      <ul>
+        <li><strong>ipwho.is</strong> — contacted during Connection Intelligence scans to look up the geographic country of publicly resolved domain IP addresses. Only the IP addresses of well-known public domains (e.g. google.com, github.com) are submitted. No personal data, no your device's IP address, and no user information of any kind is included in these requests.</li>
+      </ul>
+      <p>No other external services are contacted during normal operation. The optional Groq API (Section 6) is only contacted if you explicitly configure it.</p>
+    </div>
+
+    <div class="policy-section" id="children">
+      <h2><span class="section-num">9</span> Children's privacy</h2>
+      <p>OrionPulseNet is rated 4+ and is not directed at children under 13. Because we collect no personal data from any user, there is no special handling required for children. We do not knowingly collect any information from minors.</p>
+    </div>
+
+    <div class="policy-section" id="changes">
+      <h2><span class="section-num">10</span> Changes to this policy</h2>
+      <p>If this Privacy Policy changes materially — for example if a future version of the app adds any data collection — the updated policy will be published at this URL and the effective date will be updated. We will not retroactively change how previously collected data is used, because we collect none.</p>
+      <p>Continued use of OrionPulseNet after a policy update constitutes acceptance of the revised terms.</p>
+    </div>
+
+    <div class="policy-section" id="contact">
+      <h2><span class="section-num">11</span> Contact</h2>
+      <p>For any questions about this Privacy Policy or OrionPulseNet's data practices, please contact:</p>
+      <div class="contact-row">
+        <div>
+          <p><strong style="color:var(--text)">Mrinal Singh Raja</strong></p>
+          <p>Developer, OrionPulseNet</p>
+        </div>
+        <a class="contact-link" href="mailto:mrinalsinghraja@gmail.com">&#x2709; mrinalsinghraja@gmail.com</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="support.html">Support</a>
+    <a href="mailto:mrinalsinghraja@gmail.com">Contact</a>
+  </div>
+  &copy; 2026 Mrinal Singh Raja &nbsp;&middot;&nbsp; OrionPulseNet
+</footer>
+
+</body>
+</html>

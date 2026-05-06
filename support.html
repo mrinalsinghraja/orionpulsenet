@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OrionPulseNet — Support</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a14;
+    --surface: #12121f;
+    --surface2: #1a1a2e;
+    --border: rgba(120,100,255,0.15);
+    --accent: #7c6ff7;
+    --accent2: #00d4aa;
+    --text: #e8e6f0;
+    --muted: #7a7890;
+    --danger: #ff6b6b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent2); }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    position: sticky; top: 0;
+    background: rgba(10,10,20,0.92);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+  }
+  .header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, #7c6ff7, #00d4aa);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .logo-name { font-size: 15px; font-weight: 600; letter-spacing: -0.3px; }
+  .logo-tag { font-size: 11px; color: var(--accent2); font-weight: 500; letter-spacing: 0.5px; }
+  nav { display: flex; gap: 24px; }
+  nav a { font-size: 13px; color: var(--muted); font-weight: 500; transition: color 0.2s; }
+  nav a:hover { color: var(--text); }
+
+  .hero {
+    max-width: 860px; margin: 0 auto;
+    padding: 60px 2rem 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero h1 {
+    font-size: 32px; font-weight: 600; letter-spacing: -0.5px;
+    margin-bottom: 10px;
+  }
+  .hero p { color: var(--muted); font-size: 15px; max-width: 500px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(124,111,247,0.12); border: 1px solid rgba(124,111,247,0.25);
+    color: #a99fff; font-size: 12px; font-weight: 500;
+    padding: 4px 12px; border-radius: 20px; margin-bottom: 16px;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent2); }
+
+  main { max-width: 860px; margin: 0 auto; padding: 40px 2rem 80px; }
+
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 20px; margin-top: 48px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  .faq-group { display: flex; flex-direction: column; gap: 2px; }
+
+  details {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  details:hover { border-color: rgba(124,111,247,0.3); }
+  details[open] { border-color: rgba(124,111,247,0.4); }
+
+  summary {
+    padding: 16px 20px;
+    font-size: 14px; font-weight: 500; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    list-style: none; user-select: none;
+    color: var(--text);
+  }
+  summary::-webkit-details-marker { display: none; }
+  .chevron {
+    width: 18px; height: 18px; flex-shrink: 0;
+    color: var(--muted); transition: transform 0.2s;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+  }
+  details[open] .chevron { transform: rotate(180deg); color: var(--accent); }
+
+  .faq-body {
+    padding: 0 20px 18px;
+    font-size: 14px; color: var(--muted); line-height: 1.75;
+    border-top: 1px solid var(--border);
+  }
+  .faq-body p { padding-top: 14px; }
+  .faq-body ul { padding-top: 10px; padding-left: 18px; }
+  .faq-body li { padding: 3px 0; }
+  .faq-body code {
+    background: var(--surface2); color: #a99fff;
+    padding: 2px 6px; border-radius: 4px;
+    font-family: 'DM Mono', monospace; font-size: 12px;
+  }
+  .tip {
+    margin-top: 12px; padding: 10px 14px;
+    background: rgba(0,212,170,0.08); border-left: 3px solid var(--accent2);
+    border-radius: 0 6px 6px 0; font-size: 13px; color: #7ae8d0;
+  }
+  .warn {
+    margin-top: 12px; padding: 10px 14px;
+    background: rgba(255,107,107,0.08); border-left: 3px solid var(--danger);
+    border-radius: 0 6px 6px 0; font-size: 13px; color: #ffaaaa;
+  }
+
+  .contact-card {
+    margin-top: 48px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 20px; flex-wrap: wrap;
+  }
+  .contact-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .contact-card p { font-size: 13px; color: var(--muted); }
+  .contact-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: white;
+    padding: 10px 22px; border-radius: 8px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+  .contact-btn:hover { opacity: 0.85; color: white; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    text-align: center; padding: 28px 2rem;
+    font-size: 12px; color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">&#x1F4E1;</div>
+      <div>
+        <div class="logo-name">OrionPulseNet</div>
+        <div class="logo-tag">AI Network Intelligence</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#getting-started">Getting started</a>
+      <a href="#wifi">Wi-Fi & SSID</a>
+      <a href="#ai">AI features</a>
+      <a href="#metrics">How metrics work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-badge"><div class="dot"></div> Support Center</div>
+  <h1>How can we help?</h1>
+  <p>Answers to the most common questions about OrionPulseNet — setup, AI features, metrics, and more.</p>
+</div>
+
+<main>
+
+  <div class="section-label" id="getting-started">Getting started</div>
+  <div class="faq-group">
+    <details>
+      <summary>Does OrionPulseNet require an account or subscription? <span class="chevron">&#9660;</span></summary>
+      <div class="faq-body"><p>No. The app launches immediately with no account, login, or subscription required. All features are free and available from the moment you open the app.</p></div>
+    </details>
+    <details>
+      <summary>Does it work on Wi-Fi and Ethernet? <span class="chevron">&#9660;</span></summary>
+      <div class="faq-body"><p>Yes. OrionPulseNet automatically detects your active network interface and monitors whichever connection is active — Wi-Fi or Ethernet. The Device tab shows your interface type and diagnostics for the active connection.</p></div>
+    </details>
+    <details>
+      <summary>What system version is required? <span class="chevron">&#9660;</span></summary>
+      <div class="faq-body"><p>OrionPulseNet requires macOS 26.4 or later. On-device AI features require a compatible device with Apple Neural Engine support.</p></div>
+    </details>
+  </div>
+
+  <div class="section-label" id="wifi">Wi-Fi & SSID</div>
+  <div class="faq-group">
+    <details open>
+      <summary>My Wi-Fi network name is not showing. How do I fix it? <span class="chevron">&#9660;</span></summary>
+      <div class="faq-body">
+        <p>Displaying your Wi-Fi network name (SSID) requires Location permission. This is a system-level requirement — the SSID is treated as location-sensitive data by the operating system.</p>
+        <p>To enable it:</p>
+        <ul>
+          <li>Open <strong>System Settings</strong> &rarr; <strong>Privacy &amp; Security</strong> &rarr; <strong>Location Services</strong></li>
+          <li>Find <strong>OrionPulseNet</strong> and set it to <strong>While Using</strong></li>
+          <li>Return to the app and tap <strong>Scan</strong> in the Device tab</li>
+        </ul>
+        <div class="tip">All other features (bandwidth, latency, AI insights, history) work fully without this permission. Only the SSID display is affected.</div>
+      </div>
+    </details>
+    <details>
+      <summary>Why does a network monitoring app need Location permission? <span class="chevron">&#9660;</span></summary>
+      <div class="faq-body"><p>This is a platform requirement, not our choice. The operating system classifies Wi-Fi network names (SSIDs) as location-sensitive because they can be used to infer physical location. Any app that reads the SSID must have Location permission. Your actual GPS location is never accessed, recorded, or transmitted by OrionPulseNet.</p></div>
+    </details>
+    <details>
+      <summary>Does OrionPulseNet track my location? <span class="chevron">&#9660;</span></summary>
+      <div class="faq-body">
+        <p>No. Location permission is used solely to read your Wi-Fi network name. Your location is never recorded, stored, or transmitted anywhere. This is clearly stated in our Privacy Policy.</p>
+        <div class="warn">OrionPulseNet collects zero personal data of any kind.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="section-label" id="ai">AI features</div>
+  <div class="faq-group">
+    <details>
+      <summary>What does "On-Device AI Ready" mean? <span class="chevron">&#9660;</span></summary>
+      <div class="faq-body"><p>"On-Device AI Ready" means the on-device AI model is available on your system and all AI analysis runs entirely locally on your device. Nothing is sent to any server. This is the default and preferred mode.</p></div>
+    </details>
+    <details>
+      <summary>What does "Local Analysis Mode" mean? <span class="chevron">&#9660;</span></summary>
+      <div class="faq-body"><p>If the on-device AI model is not available on your device, OrionPulseNet automatically switches to a rule-based local analysis engine. You still receive full insights and recommendations — they are generated by a deterministic rule system rather than the AI model. All other features (bandwidth, latency, history, DNS, device diagnostics) work identically.</p></div>
+    </details>
+    <details>
+      <summary>How do I use the optional Groq API for cloud AI? <span class="chevron">&#9660;</span></summary>
+      <div class="faq-body">
+        <p>In the AI Insights tab, tap the Settings icon and enter your Groq API key. This enables cloud-powered analysis as a fallback or supplement. Your key is stored locally only and is never shared with anyone.</p>
+        <div class="tip">The Groq API is entirely optional and disabled by default. On-device AI is always the primary engine.</div>
+      </div>
+    </details>
+    <details>
+      <summary>Does AI data leave my device? <span class="chevron">&#9660;</span></summary>
+      <div class="faq-body"><p>No — by default. When using on-device AI (the default), all processing is entirely local. If you optionally enable the Groq API, only network metric summaries (speeds, scores, latency values) are sent — no personal data, no IP addresses, no identity information.</p></div>
+    </details>
+  </div>
+
+  <div class="section-label" id="metrics">How metrics are measured</div>
+  <div class="faq-group">
+    <details>
+      <summary>How is download and upload speed measured? <span class="chevron">&#9660;</span></summary>
+      <div class="faq-body"><p>Speed is measured by reading network interface byte counters directly from the system. The difference between consecutive readings (every second) gives bytes transferred, converted to Mbps. Exponential moving average smoothing is applied to reduce noise. No speed test servers are used — this reflects your actual ongoing network usage.</p></div>
+    </details>
+    <details>
+      <summary>How is latency measured? <span class="chevron">&#9660;</span></summary>
+      <div class="faq-body"><p>Latency is measured by opening a TCP connection to <code>1.1.1.1:443</code> and timing the round trip. A warmup probe is performed first to eliminate connection setup overhead, followed by 5 test probes. The average is reported. No data is transmitted — this is a pure timing measurement.</p></div>
+    </details>
+    <details>
+      <summary>How is jitter measured? <span class="chevron">&#9660;</span></summary>
+      <div class="faq-body"><p>Jitter is calculated using the RFC 3550 method: the mean absolute difference between consecutive latency samples. This is the same standard used by VoIP quality measurement systems. Lower jitter means more consistent, predictable latency.</p></div>
+    </details>
+    <details>
+      <summary>How is the Network Stability Score calculated? <span class="chevron">&#9660;</span></summary>
+      <div class="faq-body">
+        <p>The score starts at 100 and deductions are applied for:</p>
+        <ul>
+          <li>High latency — up to -30 points</li>
+          <li>High jitter — up to -25 points</li>
+          <li>Packet loss — up to -30 points</li>
+          <li>Bandwidth instability — up to -7.5 points</li>
+        </ul>
+        <p>Grades: <strong>Excellent</strong> (90+), <strong>Good</strong> (75+), <strong>Fair</strong> (50+), <strong>Poor</strong> (25+), <strong>Critical</strong> (&lt;25).</p>
+      </div>
+    </details>
+    <details>
+      <summary>What triggers an anomaly? <span class="chevron">&#9660;</span></summary>
+      <div class="faq-body">
+        <p>Anomalies are flagged when measurements exceed these thresholds:</p>
+        <ul>
+          <li>Bandwidth spike more than 3x the recent average</li>
+          <li>Latency exceeds 100ms</li>
+          <li>Jitter exceeds 20ms</li>
+          <li>Packet loss exceeds 2%</li>
+          <li>DNS resolution exceeds 50ms</li>
+        </ul>
+        <div class="tip">Bandwidth spike anomalies are common on healthy networks during large downloads or streaming. Use AI Insights for a contextual interpretation.</div>
+      </div>
+    </details>
+    <details>
+      <summary>How much history is stored and where? <span class="chevron">&#9660;</span></summary>
+      <div class="faq-body"><p>Network history is retained for 7 days and stored locally as a JSON file in the app's Application Support folder on your device. It is never uploaded anywhere. You can clear it by deleting the app's Application Support folder, or it auto-clears after 7 days.</p></div>
+    </details>
+  </div>
+
+  <div id="contact" class="contact-card">
+    <div>
+      <h3>Still need help?</h3>
+      <p>Send us an email and we'll get back to you within 24 hours.</p>
+    </div>
+    <a class="contact-btn" href="mailto:mrinalsinghraja@gmail.com">&#x2709;&#xFE0F; Email support</a>
+  </div>
+
+</main>
+
+<footer>
+  &copy; 2026 Mrinal Singh Raja &nbsp;&middot;&nbsp; OrionPulseNet &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy Policy</a>
+</footer>
+
+</body>
+</html>

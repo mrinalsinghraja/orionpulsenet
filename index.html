@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OrionPulseNet — AI Powered Network Intelligence</title>
+<meta name="description" content="Real-time network monitoring with on-device AI. Monitor bandwidth, latency, DNS, and more — all locally, zero data collection.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #070712;
+    --surface: #0f0f1e;
+    --surface2: #161628;
+    --border: rgba(120,100,255,0.12);
+    --border2: rgba(120,100,255,0.22);
+    --accent: #7c6ff7;
+    --accent2: #00d4aa;
+    --accent3: #f06292;
+    --text: #eae8f4;
+    --muted: #6e6c84;
+    --muted2: #9997b0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(7,7,18,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+  }
+  .nav-inner {
+    max-width: 1000px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 58px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-icon {
+    width: 30px; height: 30px; border-radius: 7px;
+    background: linear-gradient(135deg, #7c6ff7 0%, #00d4aa 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .nav-name { font-size: 14px; font-weight: 600; letter-spacing: -0.3px; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-size: 13px; color: var(--muted2); font-weight: 500; text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--accent); color: white;
+    padding: 8px 18px; border-radius: 8px;
+    font-size: 13px; font-weight: 600;
+    text-decoration: none; transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    max-width: 1000px; margin: 0 auto;
+    padding: 90px 2rem 70px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(124,111,247,0.1);
+    border: 1px solid rgba(124,111,247,0.2);
+    color: #b0a8ff; font-size: 12px; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+    margin-bottom: 24px; letter-spacing: 0.3px;
+  }
+  .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 58px);
+    font-weight: 600; letter-spacing: -1.5px;
+    line-height: 1.1; margin-bottom: 20px;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero h1 span { color: var(--accent2); }
+  .hero p {
+    font-size: 17px; color: var(--muted2); max-width: 560px;
+    margin: 0 auto 36px; line-height: 1.65; font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: white;
+    padding: 13px 28px; border-radius: 10px;
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--muted2);
+    border: 1px solid var(--border2);
+    padding: 13px 28px; border-radius: 10px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { color: var(--text); border-color: rgba(124,111,247,0.4); }
+
+  /* APP PREVIEW PLACEHOLDER */
+  .app-preview {
+    max-width: 780px; margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 16px; overflow: hidden;
+  }
+  .preview-bar {
+    background: var(--surface2); padding: 10px 16px;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .preview-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .preview-title { font-size: 12px; color: var(--muted); margin-left: 8px; font-weight: 500; }
+  .preview-content {
+    padding: 28px 28px;
+    display: grid; grid-template-columns: 160px 1fr; gap: 20px;
+  }
+  .preview-sidebar { display: flex; flex-direction: column; gap: 4px; }
+  .preview-nav-item {
+    padding: 9px 12px; border-radius: 8px;
+    font-size: 12px; color: var(--muted2); cursor: default;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .preview-nav-item.active { background: rgba(124,111,247,0.15); color: #c0baff; }
+  .preview-nav-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
+  .preview-nav-item.active .preview-nav-dot { background: var(--accent2); }
+  .preview-main { display: flex; flex-direction: column; gap: 14px; }
+  .metric-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+  .metric-card {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px;
+  }
+  .metric-label { font-size: 10px; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .metric-val { font-size: 22px; font-weight: 600; font-family: 'DM Mono', monospace; }
+  .metric-unit { font-size: 11px; color: var(--muted); }
+  .metric-card.cyan .metric-val { color: #00d4aa; }
+  .metric-card.purple .metric-val { color: #a99fff; }
+  .metric-card.green .metric-val { color: #7ae8a0; }
+  .metric-card.amber .metric-val { color: #ffc97a; }
+  .graph-area {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px;
+    height: 90px; display: flex; align-items: flex-end; gap: 3px;
+    overflow: hidden;
+  }
+  .graph-bar {
+    flex: 1; border-radius: 2px 2px 0 0;
+    min-height: 4px;
+  }
+
+  /* STATS STRIP */
+  .stats-strip {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    margin: 60px 0;
+  }
+  .stats-inner {
+    max-width: 1000px; margin: 0 auto;
+    padding: 32px 2rem;
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 0;
+  }
+  .stat-item {
+    text-align: center; padding: 0 20px;
+    border-right: 1px solid var(--border);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-size: 32px; font-weight: 600; color: var(--accent); font-family: 'DM Mono', monospace; letter-spacing: -1px; }
+  .stat-label { font-size: 12px; color: var(--muted2); margin-top: 2px; }
+
+  /* FEATURES */
+  .features { max-width: 1000px; margin: 0 auto; padding: 20px 2rem 60px; }
+  .section-header { text-align: center; margin-bottom: 48px; }
+  .section-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 2px;
+    color: var(--accent2); text-transform: uppercase; margin-bottom: 12px;
+  }
+  .section-header h2 { font-size: 32px; font-weight: 600; letter-spacing: -0.5px; margin-bottom: 12px; }
+  .section-header p { color: var(--muted2); max-width: 480px; margin: 0 auto; }
+
+  .features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px 22px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .feature-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .feature-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; margin-bottom: 14px;
+  }
+  .feature-icon.cyan { background: rgba(0,212,170,0.12); }
+  .feature-icon.purple { background: rgba(124,111,247,0.12); }
+  .feature-icon.pink { background: rgba(240,98,146,0.12); }
+  .feature-icon.amber { background: rgba(255,180,50,0.12); }
+  .feature-icon.blue { background: rgba(100,180,255,0.12); }
+  .feature-icon.green { background: rgba(100,230,120,0.12); }
+  .feature-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .feature-card p { font-size: 13px; color: var(--muted2); line-height: 1.65; }
+
+  /* PRIVACY */
+  .privacy-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 2rem; margin: 20px 0;
+  }
+  .privacy-inner { max-width: 1000px; margin: 0 auto; }
+  .privacy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .privacy-grid h2 { font-size: 28px; font-weight: 600; letter-spacing: -0.5px; margin-bottom: 14px; }
+  .privacy-grid p { color: var(--muted2); margin-bottom: 20px; font-size: 14px; }
+  .privacy-list { display: flex; flex-direction: column; gap: 10px; }
+  .privacy-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 13px; color: var(--muted2);
+  }
+  .privacy-check {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: rgba(0,212,170,0.12);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px; font-size: 11px; color: var(--accent2);
+  }
+  .privacy-badges { display: flex; flex-direction: column; gap: 12px; }
+  .priv-badge {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px 20px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .priv-badge-icon { font-size: 22px; flex-shrink: 0; }
+  .priv-badge-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+  .priv-badge-desc { font-size: 12px; color: var(--muted); }
+
+  /* CTA */
+  .cta-section {
+    max-width: 600px; margin: 60px auto 80px;
+    text-align: center; padding: 0 2rem;
+  }
+  .cta-section h2 { font-size: 28px; font-weight: 600; letter-spacing: -0.5px; margin-bottom: 12px; }
+  .cta-section p { color: var(--muted2); font-size: 14px; margin-bottom: 28px; }
+  .cta-badge {
+    display: inline-block;
+    background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.2);
+    color: var(--accent2); font-size: 11px; font-weight: 600;
+    padding: 4px 12px; border-radius: 20px; margin-bottom: 20px;
+    letter-spacing: 0.5px; text-transform: uppercase;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 2rem; text-align: center;
+    font-size: 12px; color: var(--muted);
+  }
+  footer a { color: var(--muted2); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+  .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-icon">&#x1F4E1;</div>
+      <span class="nav-name">OrionPulseNet</span>
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#privacy">Privacy</a>
+      <a href="support.html">Support</a>
+    </div>
+    <a class="nav-cta" href="https://apps.apple.com/app/orionpulsenet/id6761111012">Download free</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow"><div class="pulse"></div> Now available — free on the App Store</div>
+  <h1>Your network,<br><em>intelligently</em> <span>understood</span></h1>
+  <p>Real-time bandwidth, latency, AI diagnostics, and connection intelligence — all running locally on your device. Zero cloud. Zero tracking.</p>
+  <div class="hero-btns">
+    <a class="btn-primary" href="https://apps.apple.com/app/orionpulsenet/id6761111012">&#x2193; Download free</a>
+    <a class="btn-secondary" href="#features">See all features</a>
+  </div>
+
+  <div class="app-preview">
+    <div class="preview-bar">
+      <div class="preview-dot" style="background:#ff5f57"></div>
+      <div class="preview-dot" style="background:#febc2e"></div>
+      <div class="preview-dot" style="background:#28c840"></div>
+      <span class="preview-title">OrionPulseNet — Dashboard</span>
+    </div>
+    <div class="preview-content">
+      <div class="preview-sidebar">
+        <div class="preview-nav-item active"><div class="preview-nav-dot"></div>Dashboard</div>
+        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Live Traffic</div>
+        <div class="preview-nav-item"><div class="preview-nav-dot"></div>AI Insights</div>
+        <div class="preview-nav-item"><div class="preview-nav-dot"></div>History</div>
+        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Device</div>
+        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Connections</div>
+        <div class="preview-nav-item"><div class="preview-nav-dot"></div>Performance</div>
+        <div class="preview-nav-item"><div class="preview-nav-dot"></div>AI Copilot</div>
+      </div>
+      <div class="preview-main">
+        <div class="metric-row">
+          <div class="metric-card cyan"><div class="metric-label">Download</div><div class="metric-val">184<span class="metric-unit"> Mbps</span></div></div>
+          <div class="metric-card purple"><div class="metric-label">Upload</div><div class="metric-val">133<span class="metric-unit"> Mbps</span></div></div>
+          <div class="metric-card green"><div class="metric-label">Latency</div><div class="metric-val">12<span class="metric-unit"> ms</span></div></div>
+          <div class="metric-card amber"><div class="metric-label">Jitter</div><div class="metric-val">5.0<span class="metric-unit"> ms</span></div></div>
+        </div>
+        <div class="graph-area">
+          <script>
+            const bars = [8,12,18,22,28,35,42,38,30,25,32,40,55,68,72,65,58,62,70,78,82,75,80,85,90,88,82,78,72,68];
+            document.currentScript.insertAdjacentHTML('afterend', bars.map((h,i) =>
+              `<div class="graph-bar" style="height:${h}%;background:${i%2===0?'rgba(0,212,170,0.6)':'rgba(124,111,247,0.5)'}"></div>`
+            ).join(''));
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">intelligence tabs</div></div>
+    <div class="stat-item"><div class="stat-num">0</div><div class="stat-label">bytes sent to cloud</div></div>
+    <div class="stat-item"><div class="stat-num">20</div><div class="stat-label">domains profiled</div></div>
+    <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">on-device AI</div></div>
+  </div>
+</div>
+
+<section class="features" id="features">
+  <div class="section-header">
+    <div class="section-eyebrow">Features</div>
+    <h2>Everything your network deserves</h2>
+    <p>Eight specialist tabs, each built to give you a different lens on your network — all powered by on-device AI.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon cyan">&#x26A1;</div>
+      <h3>Dashboard</h3>
+      <p>Network Stability Score, live metric cards, bandwidth graph, AI insights, and anomaly detection — all at a glance.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon purple">&#x1F4C8;</div>
+      <h3>Live Traffic</h3>
+      <p>Real-time download and upload speeds with spike detection that alerts you when bandwidth surges unexpectedly.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon pink">&#x1F9E0;</div>
+      <h3>AI Insights</h3>
+      <p>On-device AI analyses your network and delivers prioritised insights by severity — with deep analysis on demand.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon amber">&#x1F4CA;</div>
+      <h3>Network History</h3>
+      <p>Trend graphs over 1H, 6H, 24H, and 7D. Identify peak usage windows and long-term patterns in your connectivity.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon blue">&#x1F4F6;</div>
+      <h3>Device Analyser</h3>
+      <p>Full interface diagnostics: SSID, IP, link speed, channel, RSSI, noise floor, and a signal quality rating.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon green">&#x1F310;</div>
+      <h3>Connection Intelligence</h3>
+      <p>DNS profiling of 20 domains with geolocation and AI-powered analysis. Search any domain to analyse it instantly.</p>
+    </div>
+  </div>
+</section>
+
+<div class="privacy-section" id="privacy">
+  <div class="privacy-inner">
+    <div class="privacy-grid">
+      <div>
+        <h2>Private by design.<br>Not by policy.</h2>
+        <p>Most network apps phone home. OrionPulseNet never does. All analysis runs locally — your data stays on your device.</p>
+        <div class="privacy-list">
+          <div class="privacy-item"><div class="privacy-check">&#x2713;</div><span>No account required. No sign-in. No subscription.</span></div>
+          <div class="privacy-item"><div class="privacy-check">&#x2713;</div><span>No data uploaded. No analytics. No tracking.</span></div>
+          <div class="privacy-item"><div class="privacy-check">&#x2713;</div><span>On-device AI — your network data never leaves your device.</span></div>
+          <div class="privacy-item"><div class="privacy-check">&#x2713;</div><span>Location used only to read your Wi-Fi name — nothing else.</span></div>
+          <div class="privacy-item"><div class="privacy-check">&#x2713;</div><span>Optional Groq API is user-configured and disabled by default.</span></div>
+        </div>
+      </div>
+      <div class="privacy-badges">
+        <div class="priv-badge"><div class="priv-badge-icon">&#x1F512;</div><div><div class="priv-badge-title">Zero data collection</div><div class="priv-badge-desc">Apple App Privacy confirms: no data collected</div></div></div>
+        <div class="priv-badge"><div class="priv-badge-icon">&#x1F9E0;</div><div><div class="priv-badge-title">On-device AI only</div><div class="priv-badge-desc">Powered by on-device model — no cloud by default</div></div></div>
+        <div class="priv-badge"><div class="priv-badge-icon">&#x1F4F4;</div><div><div class="priv-badge-title">Works offline</div><div class="priv-badge-desc">Full monitoring capability with no internet required</div></div></div>
+        <div class="priv-badge"><div class="priv-badge-icon">&#x2705;</div><div><div class="priv-badge-title">Sandboxed &amp; signed</div><div class="priv-badge-desc">Hardened runtime, full App Sandbox compliance</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="cta-section">
+  <div class="cta-badge">Free — no in-app purchases</div>
+  <h2>Start understanding your network today</h2>
+  <p>Download OrionPulseNet free. No account. No setup. Open the app and your network intelligence is live in seconds.</p>
+  <a class="btn-primary" href="https://apps.apple.com/app/orionpulsenet/id6761111012">&#x2193;&nbsp; Download on the App Store</a>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="support.html">Support</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="mailto:mrinalsinghraja@gmail.com">Contact</a>
+  </div>
+  &copy; 2026 Mrinal Singh Raja &nbsp;&middot;&nbsp; OrionPulseNet
+</footer>
+
+</body>
+</html>
